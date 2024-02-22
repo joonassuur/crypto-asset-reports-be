@@ -1,8 +1,10 @@
+import { request } from '../../../app';
+
 exports.handler = async (event, context) => {
-  const id = req.query.id;
-  const start = req.query.start;
-  const end = req.query.end;
-  const interval = req.query.interval;
+  const id = event.queryStringParameters.id;
+  const start = event.queryStringParameters.start;
+  const end = event.queryStringParameters.end;
+  const interval = event.queryStringParameters.interval;
 
   try {
     const response = await request.get(
@@ -11,11 +13,15 @@ exports.handler = async (event, context) => {
       }`
     );
     if (response?.data) {
-      res.send(response.data.data);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(response.data.data),
+      };
     }
   } catch (error) {
-    res.status(error.response.status).send({
-      message: error.response.data,
-    });
+    return {
+      statusCode: error.response.status,
+      body: JSON.stringify({ message: error.response.data }),
+    };
   }
 };

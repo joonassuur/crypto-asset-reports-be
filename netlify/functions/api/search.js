@@ -1,16 +1,22 @@
+import { request } from '../../../app';
+
 exports.handler = async (event, context) => {
-  const body = req.body;
+  const body = JSON.parse(event.body);
   try {
     const response = await request.post(
       `https://api.coinmarketcap.com/gravity/v4/gravity/global-search`,
       body
     );
     if (response?.data) {
-      res.send(response.data.data);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(response.data.data),
+      };
     }
   } catch (error) {
-    res.status(error.response.status).send({
-      message: error.response.data,
-    });
+    return {
+      statusCode: error.response.status,
+      body: JSON.stringify({ message: error.response.data }),
+    };
   }
 };

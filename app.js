@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
-const request = axios.create({
+export const request = axios.create({
   headers: {
     'X-CMC_PRO_API_KEY': '98ad3baa-6527-4251-be7e-b00d9e523c47',
   },
