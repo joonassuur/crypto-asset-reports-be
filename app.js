@@ -10,6 +10,8 @@ app.use(bodyParser.raw());
 export const request = axios.create({
   headers: {
     'X-CMC_PRO_API_KEY': '98ad3baa-6527-4251-be7e-b00d9e523c47',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
   },
 });
 
