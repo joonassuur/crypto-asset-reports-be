@@ -4,7 +4,13 @@ const axios = require('axios');
 const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
+const cors = require('cors');
 
+app.use(
+  cors({
+    origin: 'https://joonassuur.github.io/crypto-asset-reports',
+  })
+);
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(bodyParser.raw());
