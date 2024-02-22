@@ -8,7 +8,8 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: 'https://joonassuur.github.io/crypto-asset-reports',
+    // add several origins
+    origin: ['http://localhost:3000', 'https://joonassuur.github.io'],
   })
 );
 router.use(bodyParser.urlencoded({ extended: true }));
